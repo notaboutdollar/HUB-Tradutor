@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tradutor — EN / PT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2f3f2;
+    --bg-grid: rgba(0, 0, 0, 0.035);
+    --card: #ffffff;
+    --border: #e6e7e6;
+    --text: #0f1210;
+    --text-muted: #6b716d;
+    --accent: #00d26a;
+    --accent-soft: #d6f7e6;
+    --accent-dark: #00a855;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  body {
+    background-image: linear-gradient(var(--bg-grid) 1px, transparent 1px), linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+    background-size: 42px 42px; background-position: -1px -1px; min-height: 100vh;
+  }
+  header {
+    background: #fff; border-bottom: 1px solid var(--border);
+    padding: 18px 40px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+  .logo-mark {
+    width: 34px; height: 34px; background: var(--accent); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 20px; font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .nav-tag {
+    background: #f4f5f4; border: 1px solid var(--border);
+    padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--text-muted);
+  }
+  .count-tag {
+    background: var(--accent-soft); color: var(--accent-dark);
+    padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .hero { max-width: 1240px; margin: 0 auto; padding: 56px 40px 32px; }
+  .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 16px; }
+  .hero p { font-size: 17px; color: var(--text-muted); max-width: 640px; margin-bottom: 20px; }
+  .whatsapp-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 12px 20px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .whatsapp-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  }
+  .whatsapp-link svg { width: 18px; height: 18px; }
+  .tasks-header {
+    max-width: 1240px; margin: 0 auto;
+    padding: 28px 40px 0;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .tasks-header-title {
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .tasks-header-tags { display: flex; align-items: center; gap: 10px; }
+  .sections { max-width: 1240px; margin: 0 auto; padding: 20px 40px 80px; display: flex; flex-direction: column; gap: 20px; }
+  .section {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex; align-items: center; gap: 16px; padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #fafbfa 0%, #ffffff 100%);
+  }
+  .section-num {
+    width: 34px; height: 34px; background: var(--accent); color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; flex-shrink: 0;
+  }
+  .section-title-group { flex: 1; min-width: 0; }
+  .section-title { font-size: 17px; font-weight: 700; letter-spacing: -0.015em; color: var(--text); line-height: 1.3; }
+  .section-title-pt { font-size: 15px; font-weight: 500; color: var(--text-muted); margin-top: 2px; letter-spacing: -0.01em; }
+  .section-badge {
+    font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+    letter-spacing: 0.02em; flex-shrink: 0; white-space: nowrap;
+  }
+  .cat-tidy    { background: #eaf3fc; color: #1e5b9c; }
+  .cat-laundry { background: #f0ebfc; color: #5b3fa8; }
+  .cat-kitchen { background: #fdf1e6; color: #a2540e; }
+  .cat-misc    { background: #eef0ee; color: #4a524d; }
+  .section-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .lang-col { padding: 22px 28px; min-height: 100px; }
+  .lang-col + .lang-col { border-left: 1px solid var(--border); }
+  .lang-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 10px;
+  }
+  .lang-col.pt .lang-label { color: var(--accent-dark); }
+  .lang-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.6; }
+  .lang-content { font-size: 15px; line-height: 1.6; color: var(--text); }
+
+  /* FILTER BAR */
+  .filter-bar {
+    position: sticky; top: 69px; z-index: 90;
+    background: rgba(242, 243, 242, 0.85);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+  }
+  .filter-inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; gap: 10px; overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .filter-inner::-webkit-scrollbar { display: none; }
+  .filter-tab {
+    background: #fff; border: 1px solid var(--border);
+    padding: 8px 18px; border-radius: 999px;
+    font-family: inherit; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+    white-space: nowrap; transition: all 0.15s ease;
+    line-height: 1.2; flex-shrink: 0;
+  }
+  .filter-tab:hover { border-color: #cfd2d0; }
+  .filter-tab .tab-en {
+    font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -0.01em;
+  }
+  .filter-tab .tab-pt {
+    font-size: 10.5px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.01em;
+  }
+  .filter-tab.active {
+    background: var(--accent); border-color: var(--accent);
+  }
+  .filter-tab.active .tab-en { color: #fff; }
+  .filter-tab.active .tab-pt { color: rgba(255,255,255,0.85); }
+  .section.hidden { display: none; }
+
+  @media (max-width: 780px) {
+    header { padding: 16px 20px; }
+    .hero { padding: 40px 20px 24px; }
+    .hero h1 { font-size: 38px; }
+    .sections { padding: 16px 20px 60px; }
+    .section-header { flex-wrap: wrap; padding: 16px 20px; }
+    .section-body { grid-template-columns: 1fr; }
+    .lang-col + .lang-col { border-left: none; border-top: 1px solid var(--border); }
+    .lang-col { padding: 18px 20px; }
+    .hero h1 br { display: none; }
+    .filter-bar { top: 65px; padding: 12px 20px; }
+    .tasks-header { padding: 20px 20px 0; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><div class="logo-mark">$</div><span>Todos pelo Dollar</span></div>
+</header>
+<section class="hero">
+  <h1>Todos pelo Dollar<br>— HUB</h1>
+  <p>Site desenvolvido para facilitar a tradução e utilização do aplicativo Hub. Qualquer dúvida entre em nossa comunidade no WhatsApp.</p>
+  <a class="whatsapp-link" href="https://chat.whatsapp.com/JpKJ1EOIvu80TYWF23MaBq" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+    Entrar na comunidade
+  </a>
+</section>
+
+<nav class="filter-bar" aria-label="Filtro por categoria">
+  <div class="filter-inner">
+    <button class="filter-tab active" data-filter="all">
+      <span class="tab-en">All</span>
+      <span class="tab-pt">Todas</span>
+    </button>
+    <button class="filter-tab" data-filter="tidy">
+      <span class="tab-en">Tidy Tasks</span>
+      <span class="tab-pt">Organização</span>
+    </button>
+    <button class="filter-tab" data-filter="laundry">
+      <span class="tab-en">Laundry Tasks</span>
+      <span class="tab-pt">Lavanderia</span>
+    </button>
+    <button class="filter-tab" data-filter="kitchen">
+      <span class="tab-en">Kitchen Tasks</span>
+      <span class="tab-pt">Cozinha</span>
+    </button>
+    <button class="filter-tab" data-filter="misc">
+      <span class="tab-en">Misc Tasks</span>
+      <span class="tab-pt">Diversos</span>
+    </button>
+  </div>
+</nav>
+
+<div class="tasks-header">
+  <div class="tasks-header-title">Tarefas</div>
+  <div class="tasks-header-tags">
+    <div class="count-tag">84 tarefas</div>
+    <div class="nav-tag">EN → PT</div>
+  </div>
+</div>
+
+<main class="sections" id="sections">
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-group">
+        <div class="section-title">Baking – knead/roll/cut dough</div>
+        <div class="section-title-pt">Assar – sovar/abrir/cortar massa</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Mix, knead, roll, and cut dough, then shape it and prepare it for baking.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Misture, sove, abra e corte a massa, depois modele e prepare para assar.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-group">
+        <div class="section-title">Bar / Drink Station Setup</div>
+        <div class="section-title-pt">Montagem de Bar / Estação de Bebidas</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Set up a bar or drink station with glassware, bottles, ice, and mixers.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Monte um bar ou estação de bebidas com copos, garrafas, gelo e misturadores.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-group">
+        <div class="section-title">Brew Coffee / Beverage Station Reset</div>
+        <div class="section-title-pt">Preparar Café / Reorganizar Estação de Bebidas</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Brew coffee or another beverage and reset the station — refill supplies, rinse equipment, and wipe down.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Prepare café ou outra bebida e reorganize a estação — reabasteça os suprimentos, enxágue os equipamentos e limpe.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-group">
+        <div class="section-title">Build a sandwich/salad/plate a dish</div>
+        <div class="section-title-pt">Montar sanduíche/salada/empratar</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Assemble a sandwich, salad, or plated dish from prepared ingredients and arrange it for serving.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Monte um sanduíche, salada ou prato com os ingredientes preparados e arrume para servir.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-group">
+        <div class="section-title">Car Wash &amp; Detail</div>
+        <div class="section-title-pt">Lavar e Detalhar o Carro</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Wash exterior, dry, vacuum interior, wipe down dashboard and surfaces, and clean windows.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Lave a parte externa, seque, aspire o interior, limpe o painel e as superfícies, e limpe os vidros.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title-group">
+        <div class="section-title">Caulking &amp; Weatherproofing</div>
+        <div class="section-title-pt">Vedação e Isolamento contra Intempéries</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Apply caulk or weatherstripping to seal gaps around windows, doors, or fixtures.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Aplique silicone ou fita de vedação para tapar frestas ao redor de janelas, portas ou peças fixas.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title-group">
+        <div class="section-title">Change a tire (jack)</div>
+        <div class="section-title-pt">Trocar um pneu (macaco)</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Jack up the vehicle, remove the flat tire, mount the spare or replacement, and lower the vehicle.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Erga o veículo com o macaco, retire o pneu furado, monte o estepe ou reposição e abaixe o veículo.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title-group">
+        <div class="section-title">Changing Light Bulbs &amp; Batteries</div>
+        <div class="section-title-pt">Trocar Lâmpadas e Pilhas</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Go room to room replacing dead bulbs and swapping batteries in remotes, smoke detectors, and other devices.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Percorra os cômodos trocando lâmpadas queimadas e substituindo pilhas de controles, detectores de fumaça e outros aparelhos.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title-group">
+        <div class="section-title">Check &amp; add engine oil (cool engine)</div>
+        <div class="section-title-pt">Verificar e Completar Óleo do Motor (motor frio)</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Check the engine oil with the dipstick on a cool engine and add oil to bring it to level.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Verifique o óleo do motor com a vareta com o motor frio e complete o óleo até atingir o nível correto.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title-group">
+        <div class="section-title">Check tire pressure &amp; add air</div>
+        <div class="section-title-pt">Verificar Pressão dos Pneus e Encher</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Check each tire's pressure with a gauge and add air to reach the correct level.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Verifique a pressão de cada pneu com um calibrador e encha até atingir o nível correto.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title-group">
+        <div class="section-title">Clean the Bathroom</div>
+        <div class="section-title-pt">Limpar o Banheiro</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Scrub the toilet, sink, tub or shower. Organize toiletries and bathroom supplies.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Esfregue o vaso, pia, banheira ou box. Organize produtos de higiene e itens do banheiro.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div class="section-title-group">
+        <div class="section-title">Cleaning Dishes in Sink</div>
+        <div class="section-title-pt">Lavar Louça na Pia</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Clean all of the dirty dishes in the sink with a sponge or rag.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Lave toda a louça suja na pia com uma esponja ou pano.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">13</div>
+      <div class="section-title-group">
+        <div class="section-title">Cleaning Out Car</div>
+        <div class="section-title-pt">Limpar o Carro por Dentro</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Record a natural, start-to-finish tidying and cleaning the interior of a car.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Grave uma sessão natural, do início ao fim, arrumando e limpando o interior de um carro.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">14</div>
+      <div class="section-title-group">
+        <div class="section-title">Collecting Clothes Into a Hamper</div>
+        <div class="section-title-pt">Juntar Roupas no Cesto</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Collect dirty clothes that are scattered around your room or home and place them into a hamper.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Recolha as roupas sujas espalhadas pelo quarto ou pela casa e coloque-as em um cesto.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">15</div>
+      <div class="section-title-group">
+        <div class="section-title">Deep Clean Appliances</div>
+        <div class="section-title-pt">Limpeza Profunda de Eletrodomésticos</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Clean inside the oven, descale the coffee maker, wipe down the fridge interior, and clean the washer.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Limpe o interior do forno, tire o calcário da cafeteira, limpe o interior da geladeira e higienize a máquina de lavar.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">16</div>
+      <div class="section-title-group">
+        <div class="section-title">Desk Tidy &amp; Cable Management</div>
+        <div class="section-title-pt">Organização da Mesa e dos Cabos</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Clear and organize a desk and route and bundle loose cables out of the way.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Desobstrua e organize a mesa, direcione e agrupe os cabos soltos para fora do caminho.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">17</div>
+      <div class="section-title-group">
+        <div class="section-title">Device Dusting &amp; Screen Cleaning</div>
+        <div class="section-title-pt">Tirar Pó de Aparelhos e Limpar Telas</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Dust electronics and wipe screens clean with a soft cloth and the appropriate cleaner.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Tire o pó dos eletrônicos e limpe as telas com um pano macio e o produto adequado.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">18</div>
+      <div class="section-title-group">
+        <div class="section-title">Drill into real workpiece</div>
+        <div class="section-title-pt">Furar peça real</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Mark, drill, and fasten into a workpiece using a drill and the appropriate bits and hardware.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Marque, fure e fixe em uma peça usando uma furadeira, brocas apropriadas e ferragens.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">19</div>
+      <div class="section-title-group">
+        <div class="section-title">Duvet into cover / change sheets / make bed</div>
+        <div class="section-title-pt">Colocar edredom na capa / trocar lençóis / fazer a cama</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Strip and remake the bed — fit fresh sheets, put the duvet into its cover, and arrange the pillows.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Desfaça e refaça a cama — coloque lençóis limpos, coloque o edredom na capa e arrume os travesseiros.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">20</div>
+      <div class="section-title-group">
+        <div class="section-title">Filing &amp; Shredding</div>
+        <div class="section-title-pt">Arquivar e Triturar Documentos</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Sort paperwork, file what's kept, and shred documents for disposal.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Separe os documentos, arquive os que serão guardados e triture os que serão descartados.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">21</div>
+      <div class="section-title-group">
+        <div class="section-title">Folding clothes and putting them away</div>
+        <div class="section-title-pt">Dobrar roupas e guardar</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Fold a pile of clean clothes and place each item in its correct drawer, shelf, or hanger.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Dobre uma pilha de roupas limpas e coloque cada peça em sua gaveta, prateleira ou cabide correto.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">22</div>
+      <div class="section-title-group">
+        <div class="section-title">Food Prep – wash/peel/chop produce</div>
+        <div class="section-title-pt">Preparo de Alimentos – lavar/descascar/picar</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Wash, peel, and chop fruits and vegetables, then set the prepped produce aside for cooking.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Lave, descasque e pique frutas e legumes, depois reserve os ingredientes preparados para o cozimento.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">23</div>
+      <div class="section-title-group">
+        <div class="section-title">Fridge &amp; Pantry Audit</div>
+        <div class="section-title-pt">Auditoria da Geladeira e Despensa</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Pull everything out, wipe shelves, discard expired items, and restock in an organized way.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire tudo, limpe as prateleiras, descarte itens vencidos e reabasteça de forma organizada.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">24</div>
+      <div class="section-title-group">
+        <div class="section-title">Full Yard Maintenance</div>
+        <div class="section-title-pt">Manutenção Completa do Quintal</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Mow, edge, blow clippings, pull weeds, and water plants in one continuous session.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Corte a grama, apare as bordas, sopre os restos, arranque ervas daninhas e regue as plantas em uma única sessão contínua.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">25</div>
+      <div class="section-title-group">
+        <div class="section-title">Furniture Assembly</div>
+        <div class="section-title-pt">Montagem de Móveis</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Assemble furniture or similar items from their component parts, using hardware and tools as needed.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Monte móveis ou itens semelhantes a partir de suas peças, usando ferragens e ferramentas conforme necessário.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">26</div>
+      <div class="section-title-group">
+        <div class="section-title">Furniture Disassembly</div>
+        <div class="section-title-pt">Desmontagem de Móveis</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Take apart furniture into its components, keeping the hardware together for transport or storage.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Desmonte móveis em suas peças, mantendo as ferragens juntas para transporte ou armazenamento.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">27</div>
+      <div class="section-title-group">
+        <div class="section-title">Gardening</div>
+        <div class="section-title-pt">Jardinagem</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Tend to a garden by performing tasks such as planting, watering, weeding, pruning, or harvesting.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Cuide do jardim realizando tarefas como plantar, regar, capinar, podar ou colher.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">28</div>
+      <div class="section-title-group">
+        <div class="section-title">Hand-sand a surface</div>
+        <div class="section-title-pt">Lixar uma superfície à mão</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Hand-sand a surface smooth with sandpaper and wipe away the dust.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Lixe uma superfície até ficar lisa com lixa e limpe o pó.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">29</div>
+      <div class="section-title-group">
+        <div class="section-title">Hang Art &amp; Mirrors</div>
+        <div class="section-title-pt">Pendurar Quadros e Espelhos</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Measure walls, find studs, drill, hang multiple pieces throughout the home, and patch any misplaced holes.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Meça as paredes, localize os pontos de fixação, fure, pendure várias peças pela casa e reparo os furos errados.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">30</div>
+      <div class="section-title-group">
+        <div class="section-title">Hang curtains on a rod (rings/hooks)</div>
+        <div class="section-title-pt">Pendurar cortinas em varão (argolas/ganchos)</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Thread curtains onto rings or hooks, mount the rod, and hang the curtains evenly.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Passe as cortinas nas argolas ou ganchos, fixe o varão e pendure as cortinas de forma uniforme.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">31</div>
+      <div class="section-title-group">
+        <div class="section-title">Hanging clothes on hangers</div>
+        <div class="section-title-pt">Pendurar roupas em cabides</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Hang clean garments on hangers and arrange them on the rod or rack.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Pendure roupas limpas nos cabides e organize-as no varão ou arara.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">32</div>
+      <div class="section-title-group">
+        <div class="section-title">Holiday Decoration Setup</div>
+        <div class="section-title-pt">Montagem de Decoração de Festas</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Retrieve bins from storage, unpack decorations, arrange throughout the home, and pack away the empty containers.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Pegue as caixas do depósito, desembale as decorações, distribua pela casa e guarde de volta as caixas vazias.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">33</div>
+      <div class="section-title-group">
+        <div class="section-title">Ironing &amp; Steaming</div>
+        <div class="section-title-pt">Passar Roupa e Vaporizar</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Iron or steam clothing to remove wrinkles, then hang or fold each item.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Passe a ferro ou vaporize as roupas para tirar os vincos, depois pendure ou dobre cada peça.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">34</div>
+      <div class="section-title-group">
+        <div class="section-title">Kitchen Deep Clean</div>
+        <div class="section-title-pt">Limpeza Profunda da Cozinha</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Wipe all surfaces, clean inside the microwave and oven, scrub the sink, organize cabinets, and mop the floor.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Limpe todas as superfícies, o interior do micro-ondas e forno, esfregue a pia, organize os armários e passe pano no chão.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">35</div>
+      <div class="section-title-group">
+        <div class="section-title">Labeling &amp; Inventorying Boxes</div>
+        <div class="section-title-pt">Etiquetagem e Inventário de Caixas</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Label packed boxes with their contents and room and log them on an inventory list.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Etiquete as caixas embaladas com o conteúdo e o cômodo e registre-as em uma lista de inventário.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">36</div>
+      <div class="section-title-group">
+        <div class="section-title">Leaf Raking &amp; Bagging</div>
+        <div class="section-title-pt">Juntar Folhas e Ensacar</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Rake fallen leaves into piles and bag them for collection or composting.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Junte as folhas caídas em pilhas e ensaque-as para coleta ou compostagem.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">37</div>
+      <div class="section-title-group">
+        <div class="section-title">Loading Dishwasher</div>
+        <div class="section-title-pt">Carregar a Lava-Louças</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Take the dirty dishes and place them into your dishwasher for cleaning. Once you have completed loading, start the cycle.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Pegue a louça suja e coloque na lava-louças para lavagem. Assim que terminar de carregar, inicie o ciclo.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">38</div>
+      <div class="section-title-group">
+        <div class="section-title">Loading the Car for a Road Trip</div>
+        <div class="section-title-pt">Carregar o Carro para uma Viagem</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Gather bags, load the trunk, organize the back seat, pack a cooler, and do a final walkthrough before leaving.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Reúna as malas, carregue o porta-malas, organize o banco de trás, prepare o cooler e faça uma checagem final antes de sair.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">39</div>
+      <div class="section-title-group">
+        <div class="section-title">Loading the Laundry Machine</div>
+        <div class="section-title-pt">Carregar a Máquina de Lavar</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Take the dirty clothes from your hamper and put them into the washer. Once the washer is full, start the cycle.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Pegue as roupas sujas do cesto e coloque na máquina de lavar. Quando a máquina estiver cheia, inicie o ciclo.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">40</div>
+      <div class="section-title-group">
+        <div class="section-title">Mail &amp; Package Sorting</div>
+        <div class="section-title-pt">Triagem de Correspondência e Encomendas</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Sort incoming mail and packages, opening and routing items to where they belong.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Separe as correspondências e encomendas recebidas, abrindo e encaminhando cada item para o lugar certo.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">41</div>
+      <div class="section-title-group">
+        <div class="section-title">Organize a Junk Drawer</div>
+        <div class="section-title-pt">Organizar a Gaveta da Bagunça</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Empty it completely, sort into keep/toss/relocate, wipe the drawer, and put it back neat.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Esvazie completamente, separe em ficar/jogar fora/realocar, limpe a gaveta e coloque tudo de volta arrumado.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">42</div>
+      <div class="section-title-group">
+        <div class="section-title">Organize the Garage</div>
+        <div class="section-title-pt">Organizar a Garagem</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Sort tools, bins, or seasonal items in a garage or storage area. Includes sweeping and stacking.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Organize ferramentas, caixas ou itens sazonais na garagem ou área de depósito. Inclui varrer e empilhar.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">43</div>
+      <div class="section-title-group">
+        <div class="section-title">Pack a Room for Moving</div>
+        <div class="section-title-pt">Empacotar um Cômodo para Mudança</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Gather boxes and packing materials, wrap and pack all items in a room, label boxes, and stack them for moving.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Reúna caixas e materiais de embalagem, envolva e empacote todos os itens de um cômodo, etiquete as caixas e empilhe para a mudança.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">44</div>
+      <div class="section-title-group">
+        <div class="section-title">Packing a Suitcase</div>
+        <div class="section-title-pt">Fazer uma Mala</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Lay out clothes, roll and fold items, pack toiletries and accessories, zip and weigh the bag.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Separe as roupas, enrole e dobre as peças, guarde produtos de higiene e acessórios, feche a mala e pese-a.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">45</div>
+      <div class="section-title-group">
+        <div class="section-title">Party Setup &amp; Takedown</div>
+        <div class="section-title-pt">Preparação e Desmontagem de Festa</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Set up your home for a party or gathering from start to finish, then clean up and restore everything.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Prepare sua casa para uma festa ou reunião do início ao fim, depois limpe e restaure tudo ao normal.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">46</div>
+      <div class="section-title-group">
+        <div class="section-title">Patch &amp; Paint Walls</div>
+        <div class="section-title-pt">Reparar e Pintar Paredes</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Fill and sand holes or dents in a wall, then prime and paint over the repair.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Preencha e lixe furos ou amassados na parede, depois aplique o primer e pinte por cima do reparo.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">47</div>
+      <div class="section-title-group">
+        <div class="section-title">Patio / balcony furniture arrangement</div>
+        <div class="section-title-pt">Arranjo de móveis de varanda / sacada</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Arrange patio or balcony furniture into a seating layout and wipe it down.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Organize os móveis da varanda ou sacada em uma disposição de estar e limpe-os.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">48</div>
+      <div class="section-title-group">
+        <div class="section-title">Pet Care Routine</div>
+        <div class="section-title-pt">Rotina de Cuidados com Pet</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Brush, bathe, clean the pet's area or cage, and restock food and supplies.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Escove, dê banho, limpe a área ou gaiola do pet e reabasteça a comida e os suprimentos.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">49</div>
+      <div class="section-title-group">
+        <div class="section-title">Pet Feeding &amp; Water Refresh</div>
+        <div class="section-title-pt">Alimentação e Troca de Água do Pet</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Fill the food bowl and refresh clean water for a pet.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Encha a tigela de comida e coloque água limpa fresca para o pet.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">50</div>
+      <div class="section-title-group">
+        <div class="section-title">Pet Grooming &amp; Bath</div>
+        <div class="section-title-pt">Banho e Tosa do Pet</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Bathe, brush, and groom a pet, then dry it and clean up the grooming area.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Dê banho, escove e cuide da higiene do pet, depois seque-o e limpe a área de banho.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">51</div>
+      <div class="section-title-group">
+        <div class="section-title">Plunge / snake a drain</div>
+        <div class="section-title-pt">Desentupir um ralo (desentupidor/mangueira)</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Clear a clogged drain with a plunger or drain snake, then flush and test it.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Desobstrua um ralo entupido com desentupidor ou mangueira, depois enxágue e teste.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">52</div>
+      <div class="section-title-group">
+        <div class="section-title">Pool cleaning (skim surface)</div>
+        <div class="section-title-pt">Limpeza da Piscina (retirar da superfície)</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Skim leaves and debris from the pool surface with a net and empty the skimmer.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire folhas e detritos da superfície da piscina com uma peneira e esvazie o coletor.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">53</div>
+      <div class="section-title-group">
+        <div class="section-title">Post-Party Cleanup</div>
+        <div class="section-title-pt">Limpeza Pós-Festa</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Clear dishes and trash, wipe surfaces, and return furniture and rooms to order after a gathering.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Recolha louças e lixo, limpe as superfícies e reorganize móveis e cômodos após uma reunião.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">54</div>
+      <div class="section-title-group">
+        <div class="section-title">Pressure-Wash Patio / Driveway</div>
+        <div class="section-title-pt">Lavar Varanda / Garagem com Alta Pressão</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Pressure-wash a patio, driveway, or walkway to remove dirt and stains.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Use lavadora de alta pressão em varandas, garagens ou calçadas para remover sujeira e manchas.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">55</div>
+      <div class="section-title-group">
+        <div class="section-title">Pull weeds by hand / hand fork</div>
+        <div class="section-title-pt">Arrancar ervas daninhas à mão / com garfo manual</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Pull weeds from beds and borders by hand or with a hand fork, clearing the roots.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Arranque ervas daninhas dos canteiros e bordas à mão ou com um garfo manual, tirando as raízes.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">56</div>
+      <div class="section-title-group">
+        <div class="section-title">Put Up &amp; Take Down Seasonal Gear</div>
+        <div class="section-title-pt">Montar e Desmontar Equipamentos Sazonais</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Bring seasonal gear out of storage and set it up, or take it down and pack it away.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire equipamentos sazonais do depósito e monte-os, ou desmonte-os e guarde-os.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">57</div>
+      <div class="section-title-group">
+        <div class="section-title">Putting Groceries Away</div>
+        <div class="section-title-pt">Guardar as Compras</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Unpack groceries and place each item in its correct spot, such as the pantry, fridge, freezer, or cabinets.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Desembale as compras e coloque cada item no lugar certo, como despensa, geladeira, freezer ou armários.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">58</div>
+      <div class="section-title-group">
+        <div class="section-title">Rearrange Wardrobe</div>
+        <div class="section-title-pt">Reorganizar o Guarda-Roupa</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Reorganize clothing in a closet or dresser. Includes folding and rehanging items.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Reorganize as roupas no armário ou cômoda. Inclui dobrar e pendurar novamente as peças.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">59</div>
+      <div class="section-title-group">
+        <div class="section-title">Replace showerhead / faucet aerator (water off)</div>
+        <div class="section-title-pt">Trocar chuveiro / arejador da torneira (água fechada)</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Shut off the water, unscrew the old showerhead or aerator, and install and test the replacement.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Feche a água, desrosqueie o chuveiro ou arejador antigo, instale a peça nova e teste.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">60</div>
+      <div class="section-title-group">
+        <div class="section-title">Replace Smoke / CO Detector Batteries</div>
+        <div class="section-title-pt">Trocar Baterias de Detectores de Fumaça / CO</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Open the smoke and CO detectors, swap in fresh batteries, and test each unit.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Abra os detectores de fumaça e monóxido de carbono, coloque baterias novas e teste cada aparelho.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">61</div>
+      <div class="section-title-group">
+        <div class="section-title">Replace wiper blades</div>
+        <div class="section-title-pt">Trocar Palhetas do Limpador de Para-brisa</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Remove the old wiper blades and clip on the new ones, checking they sit flush.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Remova as palhetas antigas e encaixe as novas, verificando se estão bem ajustadas.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">62</div>
+      <div class="section-title-group">
+        <div class="section-title">Restock First-Aid &amp; Medicine</div>
+        <div class="section-title-pt">Reabastecer Kit de Primeiros Socorros e Medicamentos</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Check the first-aid kit and medicine supplies, discard expired items, and restock what's low.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Confira o kit de primeiros socorros e os medicamentos, descarte itens vencidos e reponha o que está em falta.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">63</div>
+      <div class="section-title-group">
+        <div class="section-title">Restock Office Supplies</div>
+        <div class="section-title-pt">Reabastecer Material de Escritório</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Check supply levels and refill pens, paper, and other office supplies into their storage spots.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Confira os níveis de estoque e reabasteça canetas, papel e outros materiais de escritório em seus locais de armazenamento.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">64</div>
+      <div class="section-title-group">
+        <div class="section-title">Scoop a litter box (clean litter)</div>
+        <div class="section-title-pt">Limpar a Caixa de Areia (higienizar)</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Scoop waste from the litter box, top off clean litter, and dispose of the scooped waste.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire os dejetos da caixa de areia, complete com areia limpa e descarte o que foi recolhido.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">65</div>
+      <div class="section-title-group">
+        <div class="section-title">Set the Table</div>
+        <div class="section-title-pt">Pôr a Mesa</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Place a plate at each person's spot, with a fork on the left and a knife and spoon on the right.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Coloque um prato no lugar de cada pessoa, com o garfo à esquerda e a faca e colher à direita.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">66</div>
+      <div class="section-title-group">
+        <div class="section-title">Setting the Table</div>
+        <div class="section-title-pt">Arrumar a Mesa</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Arrange plates, utensils, glasses, and napkins in their proper positions to set a table for a meal.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Disponha pratos, talheres, copos e guardanapos em suas posições corretas para arrumar a mesa para uma refeição.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">67</div>
+      <div class="section-title-group">
+        <div class="section-title">Shelve books by size / color</div>
+        <div class="section-title-pt">Organizar livros por tamanho / cor</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Arrange books on a shelf, ordering them by size, color, or category.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Organize os livros em uma estante, ordenando-os por tamanho, cor ou categoria.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">68</div>
+      <div class="section-title-group">
+        <div class="section-title">Sort hardware into divided tray</div>
+        <div class="section-title-pt">Organizar ferragens em bandeja com divisórias</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Sort loose screws, nails, and small hardware into the compartments of a divided tray.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Organize parafusos soltos, pregos e ferragens pequenas nos compartimentos de uma bandeja com divisórias.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">69</div>
+      <div class="section-title-group">
+        <div class="section-title">Sort recycling into bins</div>
+        <div class="section-title-pt">Separar recicláveis em lixeiras</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Separate recyclables into the correct bins by material type.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Separe os materiais recicláveis nas lixeiras corretas de acordo com o tipo de material.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">70</div>
+      <div class="section-title-group">
+        <div class="section-title">Spread mulch / shovel material</div>
+        <div class="section-title-pt">Espalhar cobertura vegetal / material com pá</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Shovel and spread mulch or similar material evenly across beds or ground.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Com uma pá, espalhe cobertura vegetal ou material similar de forma uniforme pelos canteiros ou pelo solo.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">71</div>
+      <div class="section-title-group">
+        <div class="section-title">Stack firewood</div>
+        <div class="section-title-pt">Empilhar lenha</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Stack split firewood into a neat, stable pile or rack.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Empilhe lenha cortada em uma pilha organizada e estável, ou em um suporte.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">72</div>
+      <div class="section-title-group">
+        <div class="section-title">Stain Treatment &amp; Hand-Wash</div>
+        <div class="section-title-pt">Tratamento de Manchas e Lavagem à Mão</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Treat stained spots and hand-wash delicate items, then rinse and set them to dry.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Trate manchas e lave à mão itens delicados, depois enxágue e coloque para secar.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">73</div>
+      <div class="section-title-group">
+        <div class="section-title">Sweep the porch / patio / deck</div>
+        <div class="section-title-pt">Varrer a varanda / pátio / deck</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Sweep dirt and debris off the porch, patio, or deck.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Varra a sujeira e os detritos da varanda, pátio ou deck.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">74</div>
+      <div class="section-title-group">
+        <div class="section-title">Sweeping / vacuuming</div>
+        <div class="section-title-pt">Varrer / aspirar</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Sweep or vacuum floors to clear dust, dirt, and debris.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Varra ou aspire os pisos para remover poeira, sujeira e detritos.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">75</div>
+      <div class="section-title-group">
+        <div class="section-title">Taking Out the Trash</div>
+        <div class="section-title-pt">Tirar o Lixo</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Remove the full trash bag from the bin, take it to the outdoor trash, and fit a fresh bag into the bin.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire o saco cheio da lixeira, leve-o ao lixo externo e coloque um saco novo na lixeira.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">76</div>
+      <div class="section-title-group">
+        <div class="section-title">Tidying a Single Room</div>
+        <div class="section-title-pt">Arrumar um Único Cômodo</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Pick up loose items in one room and return them to their proper places, leaving the space looking neat.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Recolha os itens soltos em um cômodo e devolva-os aos seus lugares, deixando o espaço arrumado.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">77</div>
+      <div class="section-title-group">
+        <div class="section-title">Tighten cabinet &amp; door hardware</div>
+        <div class="section-title-pt">Apertar ferragens de armários e portas</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Tighten and adjust loose hinges, handles, and knobs on cabinets and doors.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Aperte e ajuste dobradiças, puxadores e maçanetas soltas em armários e portas.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">78</div>
+      <div class="section-title-group">
+        <div class="section-title">Toy Pickup &amp; Organization</div>
+        <div class="section-title-pt">Recolher e Organizar Brinquedos</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Gather scattered toys and return them to their bins, shelves, and storage spots.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Recolha os brinquedos espalhados e devolva-os às suas caixas, prateleiras e locais de armazenamento.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">79</div>
+      <div class="section-title-group">
+        <div class="section-title">Trim a hedge / prune shrubs (hand shears)</div>
+        <div class="section-title-pt">Aparar cerca-viva / podar arbustos (tesouras manuais)</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Trim and shape a hedge or prune shrubs with hand shears and clear the clippings.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Apare e modele uma cerca-viva ou pode arbustos com tesouras manuais e recolha os cortes.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">80</div>
+      <div class="section-title-group">
+        <div class="section-title">Unloading Dishwasher and Putting Dishes Away</div>
+        <div class="section-title-pt">Descarregar a Lava-Louças e Guardar a Louça</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Remove clean dishes from the dishwasher and return each item to its correct cabinet, drawer, or shelf.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire a louça limpa da lava-louças e guarde cada item em seu armário, gaveta ou prateleira correta.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">81</div>
+      <div class="section-title-group">
+        <div class="section-title">Unloading the Laundry Machine Into a Hamper</div>
+        <div class="section-title-pt">Retirar da Máquina para o Cesto</div>
+      </div>
+      <div class="section-badge cat-laundry">Laundry Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Take clean clothes out of the washer (or dryer) and place them into a hamper for transport.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Retire as roupas limpas da máquina de lavar (ou secadora) e coloque em um cesto para transportar.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">82</div>
+      <div class="section-title-group">
+        <div class="section-title">Unpack &amp; Set Up a Room</div>
+        <div class="section-title-pt">Desembalar e Montar um Cômodo</div>
+      </div>
+      <div class="section-badge cat-tidy">Tidy Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Bring boxes in, unpack, assemble furniture, hang items, and get the room fully functional.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Traga as caixas, desembale, monte os móveis, pendure os itens e deixe o cômodo totalmente funcional.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">83</div>
+      <div class="section-title-group">
+        <div class="section-title">Walk the Dog</div>
+        <div class="section-title-pt">Passear com o Cachorro</div>
+      </div>
+      <div class="section-badge cat-misc">Misc Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Take the dog out for its regular walk. Bring the leash and waste bags, follow the usual route, and clean up after.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Leve o cachorro para o passeio de rotina. Leve a coleira e saquinhos, siga o caminho habitual e limpe depois.</div>
+      </div>
+    </div>
+  </article>
+  <article class="section">
+    <div class="section-header">
+      <div class="section-num">84</div>
+      <div class="section-title-group">
+        <div class="section-title">Wipe Kitchen Surfaces</div>
+        <div class="section-title-pt">Limpar Superfícies da Cozinha</div>
+      </div>
+      <div class="section-badge cat-kitchen">Kitchen Tasks</div>
+    </div>
+    <div class="section-body">
+      <div class="lang-col en">
+        <div class="lang-label"><span class="lang-dot"></span>English</div>
+        <div class="lang-content">Clean countertops, stovetop, and appliance exteriors with a cloth or sponge. Includes wiping down splashes and crumbs.</div>
+      </div>
+      <div class="lang-col pt">
+        <div class="lang-label"><span class="lang-dot"></span>Português</div>
+        <div class="lang-content">Limpe bancadas, cooktop e exterior dos eletrodomésticos com pano ou esponja. Inclui limpar respingos e migalhas.</div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<script>
+(function() {
+  const tabs = document.querySelectorAll('.filter-tab');
+  const sections = document.querySelectorAll('.section');
+  const countTag = document.querySelector('.count-tag');
+  const total = sections.length;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.dataset.filter;
+      let visible = 0;
+
+      sections.forEach(section => {
+        if (filter === 'all') {
+          section.classList.remove('hidden');
+          visible++;
+        } else {
+          const badge = section.querySelector('.section-badge');
+          const matches = badge && badge.classList.contains('cat-' + filter);
+          section.classList.toggle('hidden', !matches);
+          if (matches) visible++;
+        }
+      });
+
+      countTag.textContent = filter === 'all'
+        ? total + ' tarefas'
+        : visible + ' de ' + total;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

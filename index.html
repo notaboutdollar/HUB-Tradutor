@@ -52,9 +52,9 @@
     background: var(--accent-soft); color: var(--accent-dark);
     padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
   }
-  .hero { max-width: 1240px; margin: 0 auto; padding: 56px 40px 32px; }
-  .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 16px; }
-  .hero p { font-size: 17px; color: var(--text-muted); max-width: 640px; margin-bottom: 20px; }
+  .hero { max-width: 1240px; margin: 0 auto; padding: 64px 40px 56px; }
+  .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 20px; }
+  .hero p { font-size: 17px; color: var(--text-muted); max-width: 640px; margin-bottom: 28px; line-height: 1.55; }
   .whatsapp-link {
     display: inline-flex; align-items: center; gap: 10px;
     background: #25D366; color: #fff;
@@ -119,6 +119,264 @@
   .lang-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.6; }
   .lang-content { font-size: 15px; line-height: 1.6; color: var(--text); }
 
+  /* SEARCH BAR */
+  .search-wrap {
+    max-width: 1240px; margin: 0 auto 12px;
+    position: relative;
+  }
+  .search-icon {
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 18px; height: 18px; color: var(--text-muted); pointer-events: none;
+  }
+  .search-input {
+    width: 100%; font-family: inherit;
+    background: #fff; border: 1px solid var(--border); border-radius: 999px;
+    padding: 12px 44px; font-size: 15px; color: var(--text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .search-input::placeholder { color: var(--text-muted); }
+  .search-input:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .search-clear {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    width: 26px; height: 26px; border: none; border-radius: 50%;
+    background: #eef0ee; color: var(--text-muted);
+    font-size: 15px; line-height: 1; cursor: pointer; display: none;
+    align-items: center; justify-content: center;
+  }
+  .search-clear:hover { background: #e2e4e2; }
+  .search-clear.visible { display: flex; }
+  .no-results {
+    display: none; text-align: center; padding: 60px 20px; color: var(--text-muted);
+  }
+  .no-results.visible { display: block; }
+  .no-results-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .no-results-sub { font-size: 14px; }
+
+  /* FOOTER */
+  .site-footer {
+    background: #0d3b66;
+    padding: 44px 40px;
+    margin-top: 24px;
+  }
+  .footer-inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; justify-content: center; align-items: center;
+    gap: 36px; flex-wrap: wrap;
+  }
+  .social-item {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: #fff; text-decoration: none;
+    font-size: 15px; font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .social-item:hover { opacity: 0.75; transform: translateY(-1px); }
+  .social-icon {
+    width: 20px; height: 20px; flex-shrink: 0;
+  }
+
+  /* MAIN NAV (Tarefas / Indicações) */
+  .main-nav {
+    display: flex; gap: 4px;
+    background: #f4f5f4; border: 1px solid var(--border);
+    padding: 4px; border-radius: 999px;
+  }
+  .nav-tab {
+    padding: 8px 20px; border-radius: 999px; border: none;
+    background: transparent; font-family: inherit;
+    font-size: 14px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s ease; letter-spacing: -0.01em;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { background: #0f1210; color: #fff; }
+
+  /* VIEW NAV WRAPPER (entre hero e conteúdo) */
+  .view-nav-wrap {
+    max-width: 1240px; margin: 0 auto;
+    padding: 8px 40px 24px;
+  }
+
+  /* VIEW SWITCHING */
+  .view { display: none; }
+  .view.view-active { display: block; }
+
+  /* INDICAÇÕES */
+  .indicacoes-wrap {
+    max-width: 1240px; margin: 40px auto 60px; padding: 0 40px;
+  }
+  .how-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 24px; padding: 44px 48px;
+    box-shadow: var(--shadow);
+  }
+  .how-card h2 {
+    font-size: 34px; font-weight: 700;
+    letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 12px;
+  }
+  .how-card > p {
+    font-size: 16px; color: var(--text-muted);
+    max-width: 640px; line-height: 1.55; margin-bottom: 36px;
+  }
+  .how-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+
+  /* CALCULATOR */
+  .calculator {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 20px; padding: 30px 32px; position: relative;
+    overflow: hidden;
+  }
+  .calculator::before {
+    content: ''; position: absolute; top: -20%; left: -10%;
+    width: 90%; height: 100%; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(0, 210, 106, 0.22), transparent 70%);
+    z-index: 0;
+  }
+  .calculator > * { position: relative; z-index: 1; }
+  .calc-label {
+    font-size: 11px; font-weight: 700; color: var(--text-muted);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .calc-amount {
+    font-size: 46px; font-weight: 800; letter-spacing: -0.035em;
+    line-height: 1; margin-bottom: 32px; color: var(--text);
+  }
+  .calc-unit {
+    font-size: 22px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: -0.01em; margin-left: 2px;
+  }
+  .slider-group { margin-bottom: 22px; }
+  .slider-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 12px; gap: 12px;
+  }
+  .slider-header label {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .slider-value {
+    font-size: 17px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.01em; flex-shrink: 0;
+  }
+  .calc-slider {
+    width: 100%; height: 6px;
+    background: #e6e7e6; border-radius: 999px;
+    -webkit-appearance: none; appearance: none;
+    cursor: pointer; outline: none;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--accent); border: 3px solid #fff;
+    box-shadow: 0 0 0 1px var(--accent), 0 2px 8px rgba(0, 168, 85, 0.35);
+    cursor: pointer; transition: transform 0.12s ease;
+  }
+  .calc-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .calc-slider::-moz-range-thumb {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--accent); border: 3px solid #fff;
+    box-shadow: 0 0 0 1px var(--accent), 0 2px 8px rgba(0, 168, 85, 0.35);
+    cursor: pointer;
+  }
+  .calc-note {
+    font-size: 13px; color: var(--text-muted);
+    margin-top: 4px; line-height: 1.5;
+  }
+  .calc-note.hidden { display: none; }
+
+  /* LEVEL SELECT (Nível 1 / Nível 2 / Nível 1 + 2) */
+  .level-select {
+    display: inline-flex; gap: 4px;
+    background: #fff; border: 1px solid var(--border);
+    padding: 4px; border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .level-tab {
+    padding: 7px 14px; border-radius: 999px; border: none;
+    background: transparent; font-family: inherit;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s ease; letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .level-tab:hover { color: var(--text); }
+  .level-tab.active { background: var(--accent); color: #fff; }
+
+  /* NETWORK VIZ */
+  .network-viz {
+    display: flex; flex-direction: column;
+    justify-content: center; padding: 20px 0; gap: 0;
+  }
+  .viz-you-row {
+    display: flex; justify-content: center; margin-bottom: 12px;
+  }
+  .viz-you-pill {
+    background: #0f1210; color: #fff;
+    padding: 10px 22px; border-radius: 999px;
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .viz-connector {
+    display: flex; justify-content: center; padding: 4px 0;
+    transition: opacity 0.2s ease;
+  }
+  .viz-connector.dimmed { opacity: 0.28; }
+  .viz-connector::before {
+    content: ''; width: 2px; height: 20px;
+    background-image: linear-gradient(to bottom, var(--accent) 50%, transparent 50%);
+    background-size: 2px 5px; background-repeat: repeat-y;
+  }
+  .viz-level {
+    background: var(--accent-soft);
+    border: 1.5px solid rgba(0, 168, 85, 0.35);
+    border-radius: 16px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 14px;
+    transition: opacity 0.2s ease;
+  }
+  .viz-level.dimmed { opacity: 0.32; }
+  .viz-avatars { display: flex; flex-shrink: 0; }
+  .viz-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--accent-soft); margin-left: -10px;
+    background: linear-gradient(135deg, #c7a678, #8a6742);
+  }
+  .viz-avatar:first-child { margin-left: 0; }
+  .viz-avatar.a2 { background: linear-gradient(135deg, #f2c5b5, #d68a70); }
+  .viz-avatar.a3 { background: linear-gradient(135deg, #b8d4f0, #6a95c8); }
+  .viz-level-name {
+    flex: 1; font-size: 15px; font-weight: 700;
+    color: var(--text); letter-spacing: -0.01em;
+  }
+  .viz-level-rate {
+    background: var(--accent); color: #fff;
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: -0.01em; white-space: nowrap;
+  }
+
+  /* STEPS */
+  .how-steps {
+    max-width: 1240px; margin: 40px auto 0;
+    padding: 0 40px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  }
+  .step-item { display: flex; flex-direction: column; align-items: flex-start; }
+  .step-num-circle {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; margin-bottom: 20px;
+  }
+  .step-item h3 {
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -0.025em; margin-bottom: 10px; line-height: 1.2;
+  }
+  .step-item p {
+    font-size: 15px; color: var(--text-muted); line-height: 1.55;
+  }
+
   /* FILTER BAR */
   .filter-bar {
     position: sticky; top: 69px; z-index: 90;
@@ -167,15 +425,37 @@
     .hero h1 br { display: none; }
     .filter-bar { top: 65px; padding: 12px 20px; }
     .tasks-header { padding: 20px 20px 0; }
+    .search-input { padding: 11px 40px; font-size: 14px; }
+    .site-footer { padding: 36px 20px; }
+    .footer-inner { gap: 22px; }
+    .social-item { font-size: 14px; }
+
+    /* Header nav mobile */
+    header { gap: 10px; }
+    .main-nav { padding: 3px; gap: 2px; }
+    .nav-tab { padding: 7px 14px; font-size: 13px; }
+    .view-nav-wrap { padding: 4px 20px 16px; }
+
+    /* Indicações mobile */
+    .indicacoes-wrap { padding: 0 20px; margin: 24px auto 40px; }
+    .how-card { padding: 28px 24px; border-radius: 18px; }
+    .how-card h2 { font-size: 26px; }
+    .how-card > p { font-size: 15px; margin-bottom: 24px; }
+    .how-grid { grid-template-columns: 1fr; gap: 20px; }
+    .calculator { padding: 24px 22px; }
+    .calc-amount { font-size: 36px; }
+    .calc-unit { font-size: 18px; }
+    .how-steps { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; margin-top: 24px; }
+    .step-item h3 { font-size: 20px; }
   }
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><div class="logo-mark">$</div><span>Todos pelo Dollar</span></div>
+  <div class="logo"><div class="logo-mark">$</div><span>Todos pelo Dólar</span></div>
 </header>
 <section class="hero">
-  <h1>Todos pelo Dollar<br>— HUB</h1>
+  <h1>Todos pelo Dólar<br>— HUB</h1>
   <p>Site desenvolvido para facilitar a tradução e utilização do aplicativo Hub. Qualquer dúvida entre em nossa comunidade no WhatsApp.</p>
   <a class="whatsapp-link" href="https://chat.whatsapp.com/JpKJ1EOIvu80TYWF23MaBq" target="_blank" rel="noopener noreferrer">
     <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -185,7 +465,24 @@
   </a>
 </section>
 
+<div class="view-nav-wrap">
+  <nav class="main-nav" aria-label="Navegação principal">
+    <button class="nav-tab active" data-view="tarefas" type="button">Tarefas</button>
+    <button class="nav-tab" data-view="indicacoes" type="button">Indicações</button>
+  </nav>
+</div>
+
+<div class="view view-active" id="view-tarefas">
+
 <nav class="filter-bar" aria-label="Filtro por categoria">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar tarefa em inglês ou português..." autocomplete="off">
+    <button type="button" id="searchClear" class="search-clear" aria-label="Limpar pesquisa">&times;</button>
+  </div>
   <div class="filter-inner">
     <button class="filter-tab active" data-filter="all">
       <span class="tab-en">All</span>
@@ -219,6 +516,10 @@
 </div>
 
 <main class="sections" id="sections">
+  <div class="no-results" id="noResults">
+    <div class="no-results-title">Nenhuma tarefa encontrada</div>
+    <div class="no-results-sub">Tente pesquisar com outras palavras ou mude o filtro.</div>
+  </div>
   <article class="section">
     <div class="section-header">
       <div class="section-num">1</div>
@@ -1901,42 +2202,270 @@
   </article>
 </main>
 
+</div><!-- /view-tarefas -->
+
+<div class="view" id="view-indicacoes">
+
+  <div class="indicacoes-wrap">
+    <div class="how-card">
+      <h2>Como funciona</h2>
+      <p>Convide uma vez e ganhe por cada hora que sua rede gravar, em dois níveis, enquanto continuarem contribuindo.</p>
+
+      <div class="how-grid">
+        <div class="calculator">
+          <div class="calc-label">VOCÊ PODERIA GANHAR</div>
+          <div class="calc-amount">R$ <span id="calc-monthly">270,63</span><span class="calc-unit"> /mês</span></div>
+
+          <div class="level-select" role="tablist" aria-label="Selecionar nível de indicação">
+            <button class="level-tab" data-level="1" type="button">Nível 1</button>
+            <button class="level-tab" data-level="2" type="button">Nível 2</button>
+            <button class="level-tab active" data-level="both" type="button">Nível 1 + 2</button>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="friends-slider" id="friends-label">Amigos que você convida</label>
+              <span class="slider-value" id="friends-value">1</span>
+            </div>
+            <input type="range" id="friends-slider" class="calc-slider" min="1" max="1000" value="1">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="hours-slider">Horas que cada um grava / semana</label>
+              <span class="slider-value" id="hours-value">10</span>
+            </div>
+            <input type="range" id="hours-slider" class="calc-slider" min="1" max="50" value="10">
+          </div>
+
+          <p class="calc-note">Supondo que cada amigo convide 3 dos seus.</p>
+        </div>
+
+        <div class="network-viz">
+          <div class="viz-you-row">
+            <div class="viz-you-pill">Você</div>
+          </div>
+          <div class="viz-connector"></div>
+          <div class="viz-level" id="viz-level-1">
+            <div class="viz-avatars">
+              <div class="viz-avatar"></div>
+            </div>
+            <div class="viz-level-name">Nível 1 · seus amigos</div>
+            <div class="viz-level-rate">R$ 2,50/h cada</div>
+          </div>
+          <div class="viz-connector" id="viz-connector-2"></div>
+          <div class="viz-level" id="viz-level-2">
+            <div class="viz-avatars">
+              <div class="viz-avatar"></div>
+              <div class="viz-avatar a2"></div>
+              <div class="viz-avatar a3"></div>
+            </div>
+            <div class="viz-level-name">Nível 2 · amigos de amigos</div>
+            <div class="viz-level-rate">R$ 1,25/h cada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-steps">
+    <div class="step-item">
+      <div class="step-num-circle">1</div>
+      <h3>Compartilhe seu link</h3>
+      <p>Envie seu código ou link de convite para amigos.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num-circle">2</div>
+      <h3>Eles gravam</h3>
+      <p>Seu amigo grava sessões e ganha por cada hora aprovada.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num-circle">3</div>
+      <h3>Você ganha em cada nível</h3>
+      <p>R$ 2,50/h dos seus amigos (Nível 1), mais R$ 1,25/h de todos que eles convidarem (Nível 2).</p>
+    </div>
+  </div>
+
+</div><!-- /view-indicacoes -->
+
 <script>
 (function() {
-  const tabs = document.querySelectorAll('.filter-tab');
-  const sections = document.querySelectorAll('.section');
-  const countTag = document.querySelector('.count-tag');
-  const total = sections.length;
+  /* ---------- VIEW SWITCHING ---------- */
+  const navTabs = document.querySelectorAll('.nav-tab');
+  const views = document.querySelectorAll('.view');
 
-  tabs.forEach(tab => {
+  navTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const filter = tab.dataset.filter;
-      let visible = 0;
-
-      sections.forEach(section => {
-        if (filter === 'all') {
-          section.classList.remove('hidden');
-          visible++;
-        } else {
-          const badge = section.querySelector('.section-badge');
-          const matches = badge && badge.classList.contains('cat-' + filter);
-          section.classList.toggle('hidden', !matches);
-          if (matches) visible++;
-        }
-      });
-
-      countTag.textContent = filter === 'all'
-        ? total + ' tarefas'
-        : visible + ' de ' + total;
-
+      const target = tab.dataset.view;
+      navTabs.forEach(t => t.classList.toggle('active', t === tab));
+      views.forEach(v => v.classList.toggle('view-active', v.id === 'view-' + target));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  /* ---------- TAREFAS: search + filter ---------- */
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const sections = document.querySelectorAll('.section');
+  const countTag = document.querySelector('.count-tag');
+  const noResults = document.getElementById('noResults');
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+  const total = sections.length;
+
+  let activeFilter = 'all';
+
+  function normalize(str) {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  const sectionData = Array.from(sections).map(section => ({
+    el: section,
+    badge: section.querySelector('.section-badge'),
+    text: normalize(section.textContent)
+  }));
+
+  function applyFilters() {
+    const query = normalize(searchInput.value.trim());
+    let visible = 0;
+    sectionData.forEach(({ el, badge, text }) => {
+      const matchesFilter = activeFilter === 'all' || (badge && badge.classList.contains('cat-' + activeFilter));
+      const matchesQuery = query === '' || text.includes(query);
+      const matches = matchesFilter && matchesQuery;
+      el.classList.toggle('hidden', !matches);
+      if (matches) visible++;
+    });
+    countTag.textContent = (activeFilter === 'all' && query === '')
+      ? total + ' tarefas'
+      : visible + ' de ' + total;
+    noResults.classList.toggle('visible', visible === 0);
+    searchClear.classList.toggle('visible', query !== '');
+  }
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeFilter = tab.dataset.filter;
+      applyFilters();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  searchInput.addEventListener('input', applyFilters);
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    applyFilters();
+    searchInput.focus();
+  });
+
+  /* ---------- INDICAÇÕES: calculator ---------- */
+  const friendsSlider = document.getElementById('friends-slider');
+  const hoursSlider = document.getElementById('hours-slider');
+  const friendsValue = document.getElementById('friends-value');
+  const friendsLabel = document.getElementById('friends-label');
+  const hoursValue = document.getElementById('hours-value');
+  const calcMonthly = document.getElementById('calc-monthly');
+  const levelTabs = document.querySelectorAll('.level-tab');
+  const vizLevel1 = document.getElementById('viz-level-1');
+  const vizLevel2 = document.getElementById('viz-level-2');
+  const vizConn2 = document.getElementById('viz-connector-2');
+  const calcNote = document.querySelector('.calc-note');
+
+  const RATE_L1 = 2.50;      // R$/h por amigo de Nível 1
+  const RATE_L2 = 1.25;      // R$/h por amigo de Nível 2
+  const FOF_PER_FRIEND = 3;  // no modo combinado: cada amigo convida 3 amigos
+  const WEEKS_PER_MONTH = 4.33;
+
+  let calcLevel = 'both';
+
+  function formatBRL(num) {
+    return num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function updateCalculator() {
+    const N = parseInt(friendsSlider.value, 10);
+    const H = parseInt(hoursSlider.value, 10);
+
+    let weekly;
+    if (calcLevel === '1') {
+      // Só amigos diretos: R$ 2,50 × N × H
+      weekly = RATE_L1 * N * H;
+    } else if (calcLevel === '2') {
+      // Só amigos de amigos: R$ 1,25 × N × H (N = quantos amigos de amigos você tem)
+      weekly = RATE_L2 * N * H;
+    } else {
+      // Combinado: N amigos diretos + 3N amigos de amigos (assumindo 3x)
+      weekly = (RATE_L1 * N * H) + (RATE_L2 * N * FOF_PER_FRIEND * H);
+    }
+
+    const monthly = weekly * WEEKS_PER_MONTH;
+
+    // Atualiza o label do slider conforme o modo
+    friendsLabel.textContent = calcLevel === '2'
+      ? 'Amigos de amigos'
+      : 'Amigos que você convida';
+
+    friendsValue.textContent = N.toLocaleString('pt-BR');
+    hoursValue.textContent = H;
+    calcMonthly.textContent = formatBRL(monthly);
+
+    // Destaque visual da rede: escurece o nível que não está sendo contado
+    vizLevel1.classList.toggle('dimmed', calcLevel === '2');
+    vizLevel2.classList.toggle('dimmed', calcLevel === '1');
+    vizConn2.classList.toggle('dimmed', calcLevel !== 'both');
+
+    // A nota "cada amigo convida 3 dos seus" só se aplica no modo combinado
+    calcNote.classList.toggle('hidden', calcLevel !== 'both');
+  }
+
+  levelTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      levelTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      calcLevel = tab.dataset.level;
+      updateCalculator();
+    });
+  });
+
+  friendsSlider.addEventListener('input', updateCalculator);
+  hoursSlider.addEventListener('input', updateCalculator);
+  updateCalculator();
 })();
 </script>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="social-item" href="https://x.com/notaboutdollar" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+      <span>X (Twitter)</span>
+    </a>
+    <a class="social-item" href="https://www.instagram.com/notaboutdollar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </svg>
+      <span>Instagram</span>
+    </a>
+    <a class="social-item" href="https://www.youtube.com/@notaboutdollar" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+      <span>YouTube</span>
+    </a>
+    <a class="social-item" href="https://www.linkedin.com/in/danielsfigueiredo/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+    <a class="social-item" href="https://t.me/notaboutdollar" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+      <span>Telegram</span>
+    </a>
+  </div>
+</footer>
 
 </body>
 </html>

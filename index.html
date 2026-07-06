@@ -377,6 +377,99 @@
     font-size: 15px; color: var(--text-muted); line-height: 1.55;
   }
 
+  /* DARK SECTIONS (Indicações) */
+  .dark-section {
+    background: #0a0d0f; color: #fff;
+    padding: 80px 40px; margin-top: 32px;
+  }
+  .dark-inner { max-width: 1140px; margin: 0 auto; }
+  .dark-title {
+    font-size: 58px; font-weight: 800;
+    letter-spacing: -0.035em; line-height: 1.05;
+    color: #fff; text-align: center; margin-bottom: 20px;
+  }
+  .dark-title .accent-word { color: var(--accent); }
+  .dark-title--small { font-size: 40px; }
+  .dark-sub {
+    font-size: 18px; color: #9ba0a2;
+    text-align: center; max-width: 720px;
+    margin: 0 auto 48px; line-height: 1.55;
+  }
+
+  /* Rate cards (imagem 1) */
+  .rate-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; max-width: 900px; margin: 0 auto;
+  }
+  .rate-card {
+    background: #14181b; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 28px 32px;
+  }
+  .rate-label {
+    font-size: 11px; font-weight: 700;
+    color: #7d8285; letter-spacing: 0.15em; margin-bottom: 14px;
+  }
+  .rate-value {
+    color: var(--accent); font-size: 40px; font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1;
+  }
+  .rate-unit {
+    color: #fff; font-size: 20px; font-weight: 500;
+    margin-left: 4px; letter-spacing: -0.01em;
+  }
+
+  /* 4 passos (imagem 2) */
+  .passos-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 18px; margin-bottom: 32px;
+  }
+  .passo-card {
+    background: #14181b; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 28px 24px;
+  }
+  .passo-num {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(0, 210, 106, 0.15); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; margin-bottom: 22px;
+  }
+  .passo-card h3 {
+    font-size: 20px; font-weight: 700; color: #fff;
+    margin-bottom: 10px; letter-spacing: -0.02em;
+  }
+  .passo-card p {
+    font-size: 14px; color: #9ba0a2; line-height: 1.55;
+  }
+
+  /* Link box */
+  .link-box {
+    background: #14181b; border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 24px 28px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .link-box-content { flex: 1; min-width: 0; }
+  .link-label {
+    font-size: 13px; font-weight: 500; color: #9ba0a2;
+    margin-bottom: 6px; letter-spacing: -0.01em;
+  }
+  .link-url {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 18px; color: #fff; overflow-wrap: anywhere;
+    letter-spacing: -0.01em;
+  }
+  .copy-btn {
+    background: var(--accent); color: #fff; border: none;
+    padding: 14px 26px; border-radius: 999px;
+    font-family: inherit; font-size: 15px; font-weight: 700;
+    cursor: pointer; letter-spacing: -0.01em; flex-shrink: 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .copy-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 210, 106, 0.35);
+  }
+  .copy-btn.copied { background: var(--accent-dark); }
+
   /* FILTER BAR */
   .filter-bar {
     position: sticky; top: 69px; z-index: 90;
@@ -447,6 +540,21 @@
     .calc-unit { font-size: 18px; }
     .how-steps { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; margin-top: 24px; }
     .step-item h3 { font-size: 20px; }
+
+    /* Dark sections mobile */
+    .dark-section { padding: 56px 20px; }
+    .dark-title { font-size: 36px; }
+    .dark-title--small { font-size: 28px; }
+    .dark-sub { font-size: 15px; margin-bottom: 32px; }
+    .rate-cards { grid-template-columns: 1fr; gap: 12px; }
+    .rate-card { padding: 22px 24px; }
+    .rate-value { font-size: 32px; }
+    .rate-unit { font-size: 17px; }
+    .passos-grid { grid-template-columns: 1fr; gap: 12px; }
+    .passo-card { padding: 22px 22px; }
+    .link-box { flex-direction: column; align-items: stretch; padding: 22px 22px; gap: 16px; }
+    .link-url { font-size: 15px; }
+    .copy-btn { width: 100%; }
   }
 </style>
 </head>
@@ -2206,6 +2314,28 @@
 
 <div class="view" id="view-indicacoes">
 
+  <section class="dark-section">
+    <div class="dark-inner">
+      <h2 class="dark-title">
+        Convide amigos.<br>
+        Ganhe todo mês, <span class="accent-word">sem esforço extra.</span>
+      </h2>
+      <p class="dark-sub">
+        Você recebe por cada hora que seus indicados gravam com o robô — em dois níveis. Renda recorrente, sem limite de convites.
+      </p>
+      <div class="rate-cards">
+        <div class="rate-card">
+          <div class="rate-label">NÍVEL 1 · AMIGOS DIRETOS</div>
+          <div class="rate-value">R$ 2,50<span class="rate-unit">/hora gravada</span></div>
+        </div>
+        <div class="rate-card">
+          <div class="rate-label">NÍVEL 2 · INDICADOS DELES</div>
+          <div class="rate-value">R$ 1,25<span class="rate-unit">/hora gravada</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="indicacoes-wrap">
     <div class="how-card">
       <h2>Como funciona</h2>
@@ -2285,6 +2415,44 @@
       <p>R$ 2,50/h dos seus amigos (Nível 1), mais R$ 1,25/h de todos que eles convidarem (Nível 2).</p>
     </div>
   </div>
+
+  <section class="dark-section">
+    <div class="dark-inner">
+      <h2 class="dark-title dark-title--small">Como pegar seu link em 4 passos</h2>
+      <p class="dark-sub">Leva menos de um minuto. Sem complicação.</p>
+
+      <div class="passos-grid">
+        <div class="passo-card">
+          <div class="passo-num">1</div>
+          <h3>Acesse o painel</h3>
+          <p>Entre em ai.hub.xyz com sua conta.</p>
+        </div>
+        <div class="passo-card">
+          <div class="passo-num">2</div>
+          <h3>Vá em Indicações</h3>
+          <p>No menu superior, clique em "Indicações".</p>
+        </div>
+        <div class="passo-card">
+          <div class="passo-num">3</div>
+          <h3>Copie seu código</h3>
+          <p>Seu código e link já aparecem prontos, um clique copia.</p>
+        </div>
+        <div class="passo-card">
+          <div class="passo-num">4</div>
+          <h3>Compartilhe</h3>
+          <p>Envie por WhatsApp, redes sociais ou mostre o QR code.</p>
+        </div>
+      </div>
+
+      <div class="link-box">
+        <div class="link-box-content">
+          <div class="link-label">Ou use meu link de convite</div>
+          <div class="link-url" id="invite-link">https://ai.hub.xyz/r/DOLETA</div>
+        </div>
+        <button class="copy-btn" id="copy-link-btn" type="button">Copiar link</button>
+      </div>
+    </div>
+  </section>
 
 </div><!-- /view-indicacoes -->
 
@@ -2429,6 +2597,37 @@
   friendsSlider.addEventListener('input', updateCalculator);
   hoursSlider.addEventListener('input', updateCalculator);
   updateCalculator();
+
+  /* ---------- INDICAÇÕES: copiar link ---------- */
+  const copyBtn = document.getElementById('copy-link-btn');
+  const inviteLinkEl = document.getElementById('invite-link');
+
+  copyBtn.addEventListener('click', async () => {
+    const link = inviteLinkEl.textContent.trim();
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(link);
+      ok = true;
+    } catch (_) {
+      // Fallback pra navegadores mais antigos ou contextos sem clipboard API
+      const ta = document.createElement('textarea');
+      ta.value = link;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { ok = document.execCommand('copy'); } catch (_) {}
+      document.body.removeChild(ta);
+    }
+    if (ok) {
+      copyBtn.textContent = 'Copiado ✓';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copiar link';
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    }
+  });
 })();
 </script>
 
